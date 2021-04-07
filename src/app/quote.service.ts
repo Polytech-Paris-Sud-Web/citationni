@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {Quote} from "./models/quote";
-import {User} from "./models/user";
-import {HttpClient} from "@angular/common/http";
+import { Quote } from "./models/quote";
+import { User } from "./models/user";
+import { HttpClient } from "@angular/common/http";
 import { Observable, pipe, forkJoin } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
@@ -10,7 +10,11 @@ import { map, filter } from 'rxjs/operators';
 })
 export class QuoteService {
 
-  constructor(private http : HttpClient) { }
+  private _quote?: Observable<Quote>
+
+  constructor(
+    private http : HttpClient
+  ) { }
 
   public getQuotes(): Observable<Quote[]> {
     return this.http.get<Quote[]>("http://localhost:3000/quotes");
@@ -20,13 +24,20 @@ export class QuoteService {
     )*/
   }
 
-    public getFav(): Observable<Quote[]> {
-      return forkJoin(
-        this.http.get<User[]>("http://localhost:3000/user/" + "Renan"),
-        this.getQuotes()
-      ).pipe(
-        map(([user, quotes]) => quotes.filter(quote => quote.id === 4)
-        )
+  public getFav(): Observable<Quote[]> {
+    return forkJoin(
+      this.http.get<User[]>("http://localhost:3000/user/" + "Renan"),
+      this.getQuotes()
+    ).pipe(
+      map(([user, quotes]) => quotes.filter(quote => quote.id === 4)
       )
-    }
+    )
+  }
+  
+  /*public get(): Observable<Quote[]> {
+    return this.http.get<Quote>("http.//localhost:3000/quotes").pipe(
+      mergeMap(quote => this.http.get<Quote>(`http://localhost:3000/author/${}`))
+    );
+  }*/
+
 }
