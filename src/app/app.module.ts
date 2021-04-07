@@ -8,6 +8,11 @@ import { QuoteComponent } from './quote/quote.component';
 import { QuotesComponent } from './quotes/quotes.component';
 import { AuthorComponent } from './author/author.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatIconModule } from '@angular/material/icon';
+import { FavComponent } from './pages/fav/fav.component';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
@@ -15,12 +20,17 @@ import { NavbarComponent } from './navbar/navbar.component';
     QuoteComponent,
     QuotesComponent,
     AuthorComponent,
-    NavbarComponent
+    NavbarComponent,
+    FavComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatSliderModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

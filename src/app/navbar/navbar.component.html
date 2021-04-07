@@ -1,1 +1,10 @@
-<p>navbar works!</p>
+<div class="navbar">
+  <div class="fav" (click)="swapFav()"><mat-icon aria-hidden="false" aria-label="Star">{{iconStarBorderType}}</mat-icon></div>
+  <div class="research">
+    <!--input [(ngModel)]="researchValue" [value]="researchValue" type="text"-->
+    <div class="icon" (click)="actionResearch()"><mat-icon aria-hidden="false" aria-label="Search">search</mat-icon></div>
+  </div>
+  <div class="menu">
+    <mat-icon aria-hidden="false" aria-label="Menu">menu</mat-icon>
+  </div>
+</div>
