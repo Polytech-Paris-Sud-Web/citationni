@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+.example-card {
+  width: 74vw;
+  height: 68vw;
+  padding: 3vw;
+  margin: 10vw; 
+  border-radius: 15px;
+  box-shadow: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  color: #126373;
+  background-color: #BDF2FF;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#authName{
+  color: #126373;
+  margin: 0vw 9vw 3vw 0vw;
+  font-size: 1rem;
+}
+
+.content-card{
+  width: 100;
+  height: 54vw;
+  color: #126373;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+}
+
+#content{
+  text-align:center;
+  font-size: 1rem;
+}
+
+#photoAuthor{
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/3/3f/Marcus_Aurelius_Glyptothek_Munich.jpg");
+  background-size: cover;
+  border-radius: 100px;
+  width: 18vw;
+  height: 18vw;
+  margin: 4vw 0vw -3vw 12vw;
+}
+
+.actions-card{
+  height: 20vw;
+  display: flex;
+  justify-content: space-between;
+  vertical-align: bottom;
+  flex-direction: row;
+  align-items: flex-end;
+  //line-height: 0%;
+}

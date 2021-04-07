@@ -1,4 +1,12 @@
 <div *ngIf="quote">
-  <h3>{{this.quote.content}}</h3>
-  <p>{{this.quote.author}}</p>
+  <mat-card class="example-card">
+    <mat-icon aria-hidden="false" aria-label="Star" (click)="swapFav()">{{iconStarBorderType}}</mat-icon>
+    <mat-card-content class="content-card">
+      <p id="content">{{this.quote.content}}</p>
+    </mat-card-content>
+    <mat-card-actions class="actions-card">
+      <div id="photoAuthor"></div>
+      <p id="authName">{{this.quote.author}}</p>
+    </mat-card-actions>
+  </mat-card>
 </div>

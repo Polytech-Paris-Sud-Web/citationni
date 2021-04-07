@@ -6,6 +6,7 @@ import { Author } from "../models/author";
 import { QuoteAuthor } from "../models/quoteAuthor";
 import { QuoteService } from "../quote.service";
 import { AuthorService } from "../author.service";
+import { AppComponent } from '../app.component';
 
 
 @Component({
@@ -21,11 +22,16 @@ export class QuotesComponent implements OnInit {
   quoteAuthor: QuoteAuthor[] = [];
   private _quoteSub?: Subscription;
   private _authorSub?: Subscription;
+  //researchValue?: String;
 
   constructor(
     private quoteService: QuoteService,
     private authorService: AuthorService,
-  ) { }
+    private appComponent: AppComponent,
+  ) { 
+    //this.researchValue = appComponent.researchVal
+    console.log(appComponent.researchVal)
+  }
 
 
   ngOnInit(): void {

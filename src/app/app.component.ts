@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+var researchValue: String = "";
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'citationni';
+  //researchValue?: String;
+
+  researchVal(val: String){
+    researchValue=val
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,16 +10,21 @@ export class NavbarComponent implements OnInit {
 
   iconStarBorderType?: String;
   favDestination?: String;
-  researchValue?: String;
+  researchValue;
+
+  @Output() 
+  research : EventEmitter<String> = new EventEmitter();
 
   constructor(
     private router: Router,
-  ) { }
+  ) {
+    this.researchValue = ""; 
+  }
 
   ngOnInit(): void {
     if(this.router.url=="/")this.iconStarBorderType = "star";
     else this.iconStarBorderType = "home";
-    this.researchValue = "";
+    
   }
 
   swapFav() {
@@ -34,7 +39,7 @@ export class NavbarComponent implements OnInit {
   }
 
   actionResearch() {
-    console.log(this.researchValue)
+    this.research.emit(this.researchValue);
   }
 
 }
