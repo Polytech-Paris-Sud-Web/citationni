@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, of, Subscription } from 'rxjs';
+
+import { Quote } from "../../models/quote";
+import { QuoteService } from "../../quote.service";
 
 @Component({
   selector: 'app-fav',
@@ -7,9 +11,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FavComponent implements OnInit {
 
-  constructor() { }
+  favs?: Quote[];
+  private _quoteSub?: Subscription;
+
+  constructor(private quoteService: QuoteService) {
+  }
+
 
   ngOnInit(): void {
+    this._quoteSub = this.quoteService.getFav().subscribe(quotes => this.favs = quotes);
   }
 
 }
