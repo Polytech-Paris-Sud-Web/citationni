@@ -7,6 +7,7 @@ import { QuoteAuthor } from "../models/quoteAuthor";
 import { QuoteService } from "../quote.service";
 import { AuthorService } from "../author.service";
 import { AppComponent } from '../app.component';
+import { SearchService } from '../search.service';
 
 
 @Component({
@@ -22,19 +23,22 @@ export class QuotesComponent implements OnInit {
   quoteAuthor: QuoteAuthor[] = [];
   private _quoteSub?: Subscription;
   private _authorSub?: Subscription;
-  //researchValue?: String;
+  researchValue: String;
 
   constructor(
     private quoteService: QuoteService,
     private authorService: AuthorService,
     private appComponent: AppComponent,
+    private searchService: SearchService,
   ) { 
-    //this.researchValue = appComponent.researchVal
+    this.researchValue = ""
+    this.searchService.researchWord.subscribe(x => { this.researchValue = x })
     console.log(appComponent.researchVal)
+   
   }
 
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
     this._quoteSub = this.quoteService.getQuotes().subscribe(quotes => {
       this.quotes = quotes
       this._authorSub = this.authorService.getAuthors().subscribe(authors => {

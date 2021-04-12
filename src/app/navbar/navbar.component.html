@@ -1,10 +1,17 @@
-<div class="navbar">
-  <div class="fav" (click)="swapFav()"><mat-icon aria-hidden="false" aria-label="Star">{{iconStarBorderType}}</mat-icon></div>
-  <div class="research">
-    <input class="reserchBar" [(ngModel)]="researchValue" [value]="researchValue" type="text">
-    <div class="icon" (click)="actionResearch()"><mat-icon aria-hidden="false" aria-label="Search">search</mat-icon></div>
+<div>
+  <div class="navbar">
+    <div class="fav" (click)="swapFav()"><mat-icon aria-hidden="false" aria-label="Star">{{iconStarBorderType}}</mat-icon></div>
+    <div class="research">
+      <input class="reserchBar" [(ngModel)]="researchValue" [value]="researchValue" (keyup)="actionResearch()" type="text">
+      <div class="icon" (click)="actionResearch()"><mat-icon aria-hidden="false" aria-label="Search">search</mat-icon></div>
+    </div>
+    <div class="menu">
+      <mat-icon *ngIf="loged" aria-hidden="false" aria-label="Loged" (click)="logingInputShow()">persone</mat-icon>
+      <mat-icon *ngIf="!loged" aria-hidden="false" aria-label="Unloged" (click)="logingInputShow()">login</mat-icon>
+    </div>
   </div>
-  <div class="menu">
-    <mat-icon aria-hidden="false" aria-label="Menu">menu</mat-icon>
+  <div *ngIf="inputShow" class='logingForm'>
+    <input class="loginInput" [(ngModel)]="userName" [value]="userName" type="text">
+    <div class="icon" (click)="actionConnect()"><mat-icon aria-hidden="false" aria-label="Login">check</mat-icon></div>
   </div>
 </div>
