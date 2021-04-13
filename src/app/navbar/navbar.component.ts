@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { SearchService } from '../search.service'
 
 @Component({
   selector: 'app-navbar',
@@ -11,14 +12,21 @@ export class NavbarComponent implements OnInit {
   iconStarBorderType?: String;
   favDestination?: String;
   researchValue;
+  userName: String;
+  loged: boolean;
+  inputShow: boolean;
 
   @Output() 
   research : EventEmitter<String> = new EventEmitter();
 
   constructor(
     private router: Router,
+    private searchService: SearchService
   ) {
     this.researchValue = ""; 
+    this.userName = "";
+    this.loged = false;
+    this.inputShow = false;
   }
 
   ngOnInit(): void {
@@ -39,7 +47,19 @@ export class NavbarComponent implements OnInit {
   }
 
   actionResearch() {
+    this.searchService.onResearch(this.researchValue)
     this.research.emit(this.researchValue);
+  }
+
+  logingInputShow(){
+    this.inputShow=!this.inputShow
+  }
+
+  actionConnect(){
+    if(this.userName!==""){
+      this.loged = true
+      this.inputShow = false
+    }
   }
 
 }
