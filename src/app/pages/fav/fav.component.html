@@ -1,6 +1,8 @@
 <p>FAVORI</p>
 <div *ngFor="let quote of this.favs">
-  <app-quote
-    [quote]="quote"
-  ></app-quote>
+  <div *ngFor="let fav of quote">
+    <app-quote
+      [quote]="fav"
+    ></app-quote>
+  </div>
 </div>

@@ -21,6 +21,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
 import { ResearchPipe } from './pipe/research.pipe';
 
+import { MatSliderModule } from '@angular/material/slider';
+
 
 @NgModule({
   declarations: [
@@ -41,11 +43,13 @@ import { ResearchPipe } from './pipe/research.pipe';
     MatCardModule,
     MatIconModule,
     FormsModule,
+    MatSliderModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
       // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
+      //registrationStrategy: 'registerWhenStable:30000'
+      registrationStrategy: 'registerImmediately'
     })
   ],
   providers: [],

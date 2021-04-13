@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Quote } from "./models/quote";
 import { User } from "./models/user";
 import { HttpClient } from "@angular/common/http";
-import { Observable, pipe, forkJoin } from 'rxjs';
-import { map, filter } from 'rxjs/operators';
+import { Observable, pipe, forkJoin, from } from 'rxjs';
+import { map, filter, shareReplay, pluck, toArray, mergeMap, take, switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -16,28 +16,19 @@ export class QuoteService {
     private http : HttpClient
   ) { }
 
-  public getQuotes(): Observable<Quote[]> {
-    return this.http.get<Quote[]>("http://localhost:3000/quotes");
-    /*.pipe(
-      flatMap(_ => this.http.get<QuoteAutor>("http://localhost:3000/authors/") +quoteauthor,
-      map())
-    )*/
+  public getQuotes(id = ""): Observable<Quote[]> {
+    return this.http.get<Quote[]>("http://localhost:3000/quotes" + id).pipe(shareReplay(1));
   }
 
-  public getFav(): Observable<Quote[]> {
-    return forkJoin(
-      this.http.get<User[]>("http://localhost:3000/user/" + "Renan"),
-      this.getQuotes()
-    ).pipe(
-      map(([user, quotes]) => quotes.filter(quote => quote.id === 4)
-      )
-    )
-  }
-  
-  /*public get(): Observable<Quote[]> {
-    return this.http.get<Quote>("http.//localhost:3000/quotes").pipe(
-      mergeMap(quote => this.http.get<Quote>(`http://localhost:3000/author/${}`))
-    );
-  }*/
+  public getFav(): Promise<Array<string>> {
+      return new Promise((resolve, reject) => {
+          this.http.get<User>("http://localhost:3000/user/" + "Renan").pipe(shareReplay(1)).pipe(pluck('fav'),toArray())
+          .subscribe(
+          val => {var test: Array<string> = []; for (let x of <string>val[0]) {  test.push("/" + x + "" );} resolve(test); },
+          error => { reject(error); }
+          )
 
+      })
+  }
 }
+

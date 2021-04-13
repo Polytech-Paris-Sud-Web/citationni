@@ -1,5 +1,6 @@
 import {Quote} from './quote';
+
 export interface User {
-  name : string,
+  id : string,
   favorite : Quote[]
 };
