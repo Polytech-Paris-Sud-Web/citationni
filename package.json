@@ -3,13 +3,15 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
     "build": "ng build --prod",
+    "start": "node app.js",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "bd": "json-server --watch db.json",
-    "sw": "http-server -p 8080 -c-1 dist/citationni"
+    "sw": "http-server -p 8080 -c-1 dist/citationni",
+    "heroku-prebuild": "echo This runs before Heroku installs your dependencies.",
+    "heroku-postbuild": "npm install --prefix ./client"
   },
   "private": true,
   "dependencies": {
