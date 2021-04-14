@@ -17,7 +17,7 @@ export class QuoteComponent implements OnInit {
 
   @Input() 
   //quote : Quote = { id:0,content:"",author:"",is_favori:false};
-  quote : QuoteAuthor = {id:0,content:"",author:{id:0,name:"",image:"", desc:""}};
+  quote : QuoteAuthor = {id:"",content:"",author:{id:0,name:"",image:"", desc:""}};
 
   @ViewChild("importImage") importImage!: ElementRef;
   

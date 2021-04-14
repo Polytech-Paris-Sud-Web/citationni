@@ -8,6 +8,7 @@ import { QuoteService } from "../quote.service";
 import { AuthorService } from "../author.service";
 import { AppComponent } from '../app.component';
 import { SearchService } from '../search.service';
+import { ConnectService } from '../connect.service'
 
 
 @Component({
@@ -30,6 +31,7 @@ export class QuotesComponent implements OnInit {
     private authorService: AuthorService,
     private appComponent: AppComponent,
     private searchService: SearchService,
+    private connectService: ConnectService,
   ) { 
     this.researchValue = ""
     this.searchService.researchWord.subscribe(x => { this.researchValue = x })
@@ -56,9 +58,9 @@ export class QuotesComponent implements OnInit {
       })
     });*/
     this._quoteAuthorSub = this.quoteService.getQuotes().subscribe(rep => {
-      this.quoteAuthor=[rep[0],rep[1]]
-      console.log(this.quoteAuthor)
+      this.quoteAuthor=rep
     })
+    
   }
 
 

@@ -1,6 +1,5 @@
 export interface Quote {
-  id : number,
+  id : string,
   content : string,
-  author : string,
-  is_favori : boolean
+  author : string
 };

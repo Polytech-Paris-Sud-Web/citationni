@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ConnectService } from './connect.service';
 
 var researchValue: String = "";
 
@@ -13,5 +14,10 @@ export class AppComponent {
 
   researchVal(val: String){
     researchValue=val
+  }
+  constructor(
+    private connectService: ConnectService,
+  ) {
+  this.connectService.init()
   }
 }

@@ -1,10 +1,8 @@
 <div id=favPage>
   <p id="fav">FAVORI</p>
   <div *ngFor="let quote of this.favs">
-	<div *ngFor="let fav of quote">
 		<app-quote
-		  [quote]="fav"
+		  [quote]="quote"
 		></app-quote>
 	</div>
-  </div>
 </div>

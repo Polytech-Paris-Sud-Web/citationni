@@ -5,6 +5,7 @@ import { User } from "./models/user";
 import { HttpClient } from "@angular/common/http";
 import { Observable, pipe, forkJoin, from } from 'rxjs';
 import { map, filter, shareReplay, pluck, toArray, mergeMap, take, switchMap } from 'rxjs/operators';
+import { ConnectService } from "./connect.service";
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +16,12 @@ export class QuoteService {
   private _quoteAuthor?: Observable<QuoteAuthor>
 
   constructor(
-    private http : HttpClient
+    private http : HttpClient,
+    private connectService : ConnectService
   ) { }
 
   public getQuotes(): Observable<QuoteAuthor[]> {
-    return this.http.get<QuoteAuthor[]>("https://citationni.herokuapp.com/quotes");
+    return this.http.get<QuoteAuthor[]>("https://citationni.herokuapp.com/quotes").pipe(shareReplay(1));
   }
 
   /*
@@ -28,7 +30,18 @@ export class QuoteService {
   }
   */
 
-  public getFav(): Promise<Array<string>> {
+  public getFav(): Observable<QuoteAuthor[]> {
+    return this.http.get<QuoteAuthor[]>("https://citationni.herokuapp.com/quotes").pipe(shareReplay(1))
+    .pipe(
+      map(q => q.filter(quote =>{ 
+        let isFav=false
+        this.connectService.getFav().map(fav => {if(!isFav){isFav=(fav.id===quote.id)}})
+        return isFav
+      }) ))
+    
+  }
+
+ /* public getFav(): Promise<Array<string>> {
       return new Promise((resolve, reject) => {
           this.http.get<User>("http://localhost:3000/user/" + "Renan").pipe(shareReplay(1)).pipe(pluck('fav'),toArray())
           .subscribe(
@@ -37,6 +50,6 @@ export class QuoteService {
           )
 
       })
-  }
+  }*/
 }
 

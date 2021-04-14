@@ -13,20 +13,19 @@ import { QuoteService } from "../../quote.service";
 })
 export class FavComponent implements OnInit {
 
-  favs?: [QuoteAuthor[]];
+  favs?: QuoteAuthor[];
   private _favSub?: Subscription;
 
   constructor(private quoteService: QuoteService) {
   }
 
   ngOnInit(): void {
-    this.quoteService.getFav().then(fav =>
+    this.quoteService.getFav().subscribe(quote => this.favs=quote);
            /* from(fav).pipe(mergeMap(id => forkJoin(this.quoteService.getQuotes(<string>id))))
                   .subscribe(quotes =>
                         this.favs = quotes)
             );*/
-            console.log(fav)
-            );
+           
   }
 
 }
