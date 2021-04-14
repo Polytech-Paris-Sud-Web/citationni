@@ -24,8 +24,8 @@ export class NavbarComponent implements OnInit {
     private searchService: SearchService
   ) {
     this.researchValue = ""; 
-    this.userName = "";
-    this.loged = false;
+    this.userName = "kévin";
+    this.loged = true;
     this.inputShow = false;
   }
 

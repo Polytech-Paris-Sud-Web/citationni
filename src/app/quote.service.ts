@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Quote } from "./models/quote";
+import { QuoteAuthor } from "./models/quoteAuthor";
 import { User } from "./models/user";
 import { HttpClient } from "@angular/common/http";
 import { Observable, pipe, forkJoin, from } from 'rxjs';
@@ -11,14 +12,21 @@ import { map, filter, shareReplay, pluck, toArray, mergeMap, take, switchMap } f
 export class QuoteService {
 
   private _quote?: Observable<Quote>
+  private _quoteAuthor?: Observable<QuoteAuthor>
 
   constructor(
     private http : HttpClient
   ) { }
 
-  public getQuotes(id = ""): Observable<Quote[]> {
+  public getQuotes(): Observable<QuoteAuthor[]> {
+    return this.http.get<QuoteAuthor[]>("https://citationni.herokuapp.com/quotes");
+  }
+
+  /*
+ public getQuotes(id = ""): Observable<Quote[]> {
     return this.http.get<Quote[]>("http://localhost:3000/quotes" + id).pipe(shareReplay(1));
   }
+  */
 
   public getFav(): Promise<Array<string>> {
       return new Promise((resolve, reject) => {

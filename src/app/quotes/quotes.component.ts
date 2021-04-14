@@ -21,7 +21,7 @@ export class QuotesComponent implements OnInit {
   authors?: Author[];
   tmpAuthor?: Author;
   quoteAuthor: QuoteAuthor[] = [];
-  private _quoteSub?: Subscription;
+  private _quoteAuthorSub?: Subscription;
   private _authorSub?: Subscription;
   researchValue: String;
 
@@ -39,7 +39,7 @@ export class QuotesComponent implements OnInit {
 
 
   ngOnInit(): void { 
-    this._quoteSub = this.quoteService.getQuotes().subscribe(quotes => {
+    /*this._quoteSub = this.quoteService.getQuotes().subscribe(quotes => {
       this.quotes = quotes
       this._authorSub = this.authorService.getAuthors().subscribe(authors => {
         this.authors = authors
@@ -54,7 +54,11 @@ export class QuotesComponent implements OnInit {
         });
          
       })
-    });
+    });*/
+    this._quoteAuthorSub = this.quoteService.getQuotes().subscribe(rep => {
+      this.quoteAuthor=[rep[0],rep[1]]
+      console.log(this.quoteAuthor)
+    })
   }
 
 

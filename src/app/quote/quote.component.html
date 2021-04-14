@@ -5,8 +5,8 @@
       <p id="content">{{this.quote.content}}</p>
     </mat-card-content>
     <mat-card-actions class="actions-card">
-      <div id="photoAuthor"></div>
-      <p id="authName">{{this.quote.author}}</p>
+      <div id="photoAuthor" #importImage [style.background-image]="urlImage"></div>
+      <p id="authName">{{this.quote.author.name}}</p>
     </mat-card-actions>
   </mat-card>
 </div>

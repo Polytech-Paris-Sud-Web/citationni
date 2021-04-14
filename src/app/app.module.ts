@@ -5,6 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { AngularFireStorageModule } from '@angular/fire/storage'
+import { AngularFireModule } from '@angular/fire'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -50,7 +52,16 @@ import { MatSliderModule } from '@angular/material/slider';
       // or after 30 seconds (whichever comes first).
       //registrationStrategy: 'registerWhenStable:30000'
       registrationStrategy: 'registerImmediately'
-    })
+    }),
+    AngularFireModule.initializeApp({
+      apiKey: "AIzaSyAE01mZx039H3eVqWtohZ_K-FT71kX_wIg",
+      authDomain: "citationni.firebaseapp.com",
+      projectId: "citationni",
+      storageBucket: "citationni.appspot.com",
+      messagingSenderId: "520185216642",
+      appId: "1:520185216642:web:3c5dbf51fdc76e852b7e9b"
+    }),
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]
