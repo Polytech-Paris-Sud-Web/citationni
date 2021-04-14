@@ -1,5 +1,5 @@
-<div *ngFor="let quote of this.quoteAuthor | research: researchValue" id="card">
+<div *ngFor="let quote of this.quoteAuthor | research: researchValue; let i = index" id="card" [attr.data-index]="i">
   <app-quote  
-    [quote]="quote" 
+    [quote]="quote"
   ></app-quote>
 </div>

@@ -35,7 +35,9 @@ export class QuoteService {
     .pipe(
       map(q => q.filter(quote =>{ 
         let isFav=false
-        this.connectService.getFav().map(fav => {if(!isFav){isFav=(fav.id===quote.id)}})
+        this.connectService.getFav().map(fav => {if(!isFav){
+          isFav=(fav.id===quote.id)
+        }})
         return isFav
       }) ))
     

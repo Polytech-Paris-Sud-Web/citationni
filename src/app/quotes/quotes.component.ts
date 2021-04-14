@@ -22,6 +22,7 @@ export class QuotesComponent implements OnInit {
   authors?: Author[];
   tmpAuthor?: Author;
   quoteAuthor: QuoteAuthor[] = [];
+  isFav: Boolean[] = [];
   private _quoteAuthorSub?: Subscription;
   private _authorSub?: Subscription;
   researchValue: String;
@@ -59,6 +60,16 @@ export class QuotesComponent implements OnInit {
     });*/
     this._quoteAuthorSub = this.quoteService.getQuotes().subscribe(rep => {
       this.quoteAuthor=rep
+    })
+
+    this.quoteService.getFav().subscribe(rep=> {
+      let isFav=false;
+      this.quoteAuthor.find(q => {
+        rep.map(r=>{
+          if(!isFav && r.id===q.id){isFav=true}
+        })
+      })
+      this.isFav.push(isFav)
     })
     
   }

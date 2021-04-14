@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, from, Subscription, forkJoin } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
+import { SearchService } from '../../search.service';
 
 import { Quote } from "../../models/quote";
 import { QuoteAuthor } from "../../models/quoteAuthor"
 import { QuoteService } from "../../quote.service";
+
 
 @Component({
   selector: 'app-fav',
@@ -15,8 +17,14 @@ export class FavComponent implements OnInit {
 
   favs?: QuoteAuthor[];
   private _favSub?: Subscription;
+  researchValue: String;
 
-  constructor(private quoteService: QuoteService) {
+  constructor(
+    private quoteService: QuoteService,
+    private searchService: SearchService
+    ) {
+    this.researchValue = ""
+    this.searchService.researchWord.subscribe(x => { this.researchValue = x })
   }
 
   ngOnInit(): void {

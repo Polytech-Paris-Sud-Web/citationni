@@ -16,7 +16,7 @@ export class ResearchPipe implements PipeTransform {
     searchText = searchText.toLocaleLowerCase();
 
     return items.filter((it: any)=> {
-      return it.author.toLocaleLowerCase().includes(searchText) || it.content.toLocaleLowerCase().includes(searchText)
+      return it.author.name.toLocaleLowerCase().includes(searchText) || it.content.toLocaleLowerCase().includes(searchText)
     })
   }
 

@@ -1,6 +1,6 @@
 <div id=favPage>
   <p id="fav">FAVORI</p>
-  <div *ngFor="let quote of this.favs">
+  <div *ngFor="let quote of this.favs | research: researchValue">
 		<app-quote
 		  [quote]="quote"
 		></app-quote>

@@ -18,6 +18,7 @@ export class QuoteComponent implements OnInit {
   @Input() 
   //quote : Quote = { id:0,content:"",author:"",is_favori:false};
   quote : QuoteAuthor = {id:"",content:"",author:{id:0,name:"",image:"", desc:""}};
+  isFave : Boolean = false;
 
   @ViewChild("importImage") importImage!: ElementRef;
   
@@ -25,8 +26,8 @@ export class QuoteComponent implements OnInit {
   constructor(
     private _firebaseService: FirebaseService,
   ) {
-   /* if(this.quote?.is_favori)this.iconStarBorderType = "star";
-    else this.iconStarBorderType = "star_border";*/
+    if(this.isFave)this.iconStarBorderType = "star";
+    else this.iconStarBorderType = "star_border";
     
   }
 
@@ -37,10 +38,10 @@ export class QuoteComponent implements OnInit {
   swapFav() {
     if(this.iconStarBorderType==="star"){
       this.iconStarBorderType = "star_border"
-      //this.quote.is_favori = false
+      this.isFave = false
     }else{
       this.iconStarBorderType = "star"
-      //this.quote.is_favori = true
+      this.isFave = true
     }
   }
 
