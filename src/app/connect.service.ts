@@ -14,7 +14,6 @@ export class ConnectService {
 
   constructor(
     private http : HttpClient,
-    //private quote: Quote
   ) {
     this.user={id:"",fav:[{id:"",content:"",author:""}]}
   }

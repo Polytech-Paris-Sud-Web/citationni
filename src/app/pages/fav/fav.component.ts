@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, from, Subscription, forkJoin } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 import { SearchService } from '../../search.service';
 
-import { Quote } from "../../models/quote";
 import { QuoteAuthor } from "../../models/quoteAuthor"
 import { QuoteService } from "../../quote.service";
 
@@ -28,12 +26,7 @@ export class FavComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.quoteService.getFav().subscribe(quote => this.favs=quote);
-           /* from(fav).pipe(mergeMap(id => forkJoin(this.quoteService.getQuotes(<string>id))))
-                  .subscribe(quotes =>
-                        this.favs = quotes)
-            );*/
-           
+    this.quoteService.getFav().subscribe(quote => this.favs=quote);           
   }
 
 }

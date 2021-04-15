@@ -24,12 +24,6 @@ export class QuoteService {
     return this.http.get<QuoteAuthor[]>("https://citationni.herokuapp.com/quotes").pipe(shareReplay(1));
   }
 
-  /*
- public getQuotes(id = ""): Observable<Quote[]> {
-    return this.http.get<Quote[]>("http://localhost:3000/quotes" + id).pipe(shareReplay(1));
-  }
-  */
-
   public getFav(): Observable<QuoteAuthor[]> {
     return this.http.get<QuoteAuthor[]>("https://citationni.herokuapp.com/quotes").pipe(shareReplay(1))
     .pipe(
@@ -42,16 +36,5 @@ export class QuoteService {
       }) ))
     
   }
-
- /* public getFav(): Promise<Array<string>> {
-      return new Promise((resolve, reject) => {
-          this.http.get<User>("http://localhost:3000/user/" + "Renan").pipe(shareReplay(1)).pipe(pluck('fav'),toArray())
-          .subscribe(
-          val => {var test: Array<string> = []; for (let x of <string>val[0]) {  test.push("/" + x + "" );} resolve(test); },
-          error => { reject(error); }
-          )
-
-      })
-  }*/
 }
 

@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, ViewChild, ElementRef} from '@angular/core';
-import {Quote} from '../models/quote';
 import {QuoteAuthor} from '../models/quoteAuthor';
 import { FirebaseService } from '../firebase.service'
 
@@ -16,7 +15,6 @@ export class QuoteComponent implements OnInit {
   urlImage;
 
   @Input() 
-  //quote : Quote = { id:0,content:"",author:"",is_favori:false};
   quote : QuoteAuthor = {id:"",content:"",author:{id:0,name:"",image:"", desc:""}};
   isFave : Boolean = false;
 
